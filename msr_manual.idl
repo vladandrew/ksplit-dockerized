@@ -29,7 +29,6 @@ rpc_ptr array<char, null> [alloc(caller)] * devnode( projection device [alloc(ca
 		unsigned int devt;
 	}
 }
-
 rpc projection ret_device [bind(caller)] *  device_create( projection class*  class, projection device [alloc(callee)] *  parent, unsigned int  devt, void*  [unused] drvdata, string [alloc(callee)] * fmt, u32 cpu) {
 	projection < struct device > ret_device {
 	}
@@ -44,14 +43,14 @@ rpc void  device_destroy( projection class* [in] class, unsigned int [unused] de
 		//char* [in] name;
 	}
 }
-rpc char*  kasprintf( unsigned int  gfp, char  *fmt ) {
-}
+//rpc char*  kasprintf( unsigned int  gfp, char  *fmt ) {
+//}
 rpc int rdmsr_safe_on_cpu( unsigned int cpu, unsigned int msr_no, unsigned int [alloc(callee), out] * l, unsigned int [alloc(callee), out] * h ) {
 }
 rpc int rdmsr_safe_regs_on_cpu( unsigned int cpu, array<unsigned int, 8> [alloc(callee), in, out] * regs ) {
 }
-/*rpc void  warn_slowpath_fmt( char*  file, int  line, char*  fmt ) {
-}*/
+//rpc void  warn_slowpath_fmt( char  *file, int  line, char  *fmt ) {
+//}
 rpc int  wrmsr_safe_on_cpu( unsigned int  cpu, unsigned int  msr_no, unsigned int  l, unsigned int  h ) {
 }
 rpc int wrmsr_safe_regs_on_cpu( unsigned int cpu, array<unsigned int, 8> [alloc(callee), in, out] *regs ) {
@@ -79,7 +78,6 @@ rpc_ptr u64  msr_read( projection file [alloc(callee)] * file, array<char, {{cou
 	}
 }
 rpc_ptr u64  msr_write( projection file [alloc(callee)] * file, array<char, {{count}}> [alloc(callee), in, out] *buf, u64  count, u64 [alloc(callee)]* ppos ) {
- 	projection < struct file > file {
 	projection < struct file > file {
 		projection file_inode [alloc(callee)]* f_inode;
 	}
@@ -116,4 +114,5 @@ projection < struct file_operations > _global_file_operations {
 }
 	rpc unsigned long get_jiffies() {
 	}
+
 }
